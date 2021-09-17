@@ -1,0 +1,99 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.ttester_paukov_ADV3.ADV5"
+4    android:versionCode="1"
+5    android:versionName="1.0-ADV2" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="14"
+8-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.VIBRATE" />
+11-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:6:5-65
+11-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:6:22-63
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:7:5-81
+12-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:7:22-78
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:8:5-80
+13-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:8:22-77
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:9:5-66
+14-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:9:22-64
+15
+16    <application
+16-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:12:5-52:19
+17        android:allowBackup="true"
+17-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:13:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.3.1] C:\Users\Sergey\.gradle\caches\transforms-2\files-2.1\b4209d3d51bb3cb6b660540ee16868c0\core-1.3.1\AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:hardwareAccelerated="true"
+20-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:16:9-43
+21        android:icon="@mipmap/ic_launcher_luna"
+21-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:14:9-48
+22        android:label="@string/app_name"
+22-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:15:9-42
+23        android:requestLegacyExternalStorage="true"
+23-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:18:9-52
+24        android:theme="@style/AppTheme.NoActionBar" >
+24-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:17:9-52
+25        <activity
+25-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:19:9-28:20
+26            android:name="com.example.ttester_paukov.drawer.MainActivity_NavigationDrawer"
+26-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:20:13-91
+27            android:configChanges="orientation|screenSize"
+27-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:21:13-59
+28            android:label="@string/app_name" >
+28-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:22:13-45
+29            <intent-filter>
+29-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:23:13-27:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:24:17-69
+30-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:24:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:26:17-77
+32-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:26:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:30:9-34:20
+36            android:name="com.example.ttester_paukov.ExternalDB_worked.MainActivity_externalDB"
+36-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:31:13-96
+37            android:label="@string/Quiz" >
+37-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:32:13-41
+38        </activity>
+39        <activity
+39-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:36:9-39:20
+40            android:name="com.example.ttester_paukov.QuizActivity"
+40-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:37:13-67
+41            android:label="@string/Quiz" >
+41-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:38:13-41
+42        </activity>
+43        <activity
+43-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:40:9-43:20
+44            android:name="com.example.ttester_paukov.Info_screen"
+44-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:41:13-66
+45            android:label="о программе" >
+45-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:42:13-40
+46        </activity>
+47        <activity
+47-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:44:9-47:20
+48            android:name="com.example.ttester_paukov.ResultActivity"
+48-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:45:13-69
+49            android:label="@string/title_activity_result" >
+49-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:46:13-58
+50        </activity>
+51        <activity
+51-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:48:9-50:20
+52            android:name="com.example.ttester_paukov.Search"
+52-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:48:19-67
+53            android:label="поиск" >
+53-->D:\Temp\Test_android\QUIZ\tTester\app\src\main\AndroidManifest.xml:49:13-34
+54        </activity>
+55    </application>
+56
+57</manifest>

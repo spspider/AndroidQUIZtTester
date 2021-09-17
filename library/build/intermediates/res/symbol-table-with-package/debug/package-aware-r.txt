@@ -1,0 +1,1 @@
+com.readystatesoftware.android.sqliteassethelper

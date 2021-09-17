@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tTester.iml" filepath="$PROJECT_DIR$/tTester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tTester.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tTester.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/tTester.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/tTester.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simplyjava/tTester.simplyjava.iml" filepath="$PROJECT_DIR$/.idea/modules/simplyjava/tTester.simplyjava.iml" />
+    </modules>
+  </component>
+</project>

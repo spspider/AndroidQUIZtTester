@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--
+    <string name="app_name">tTesterADV</string>
+
+    <string name="dbName">dbADV</string>
+    -->
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="str_next">Далее</string>
+    <string name="title_activity_result">Результат</string>
+    <string name="write_file">Записать файл</string>
+    <string name="read_file">Прочесть файл</string>
+    <string name="write_file_sd">Записать файл на SD</string>
+    <string name="read_file_sd">Прочесть файл с SD</string>
+    <string name="Quiz">tTester</string>
+    <string name="OpenFileDialog">Открыть файл</string>
+    <string name="InfoText"></string>
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="action_settings">Settings</string>
+    <string name="search">поиск</string>
+</resources>

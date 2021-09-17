@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Automatically generated file. DO NOT MODIFY -->
+
+    <!-- Values from product flavor: ADV -->
+    <string name="app_name" translatable="false">tTesterADV2</string>
+    <string name="dbname_gradle" translatable="false">dbADV2</string>
+
+</resources>

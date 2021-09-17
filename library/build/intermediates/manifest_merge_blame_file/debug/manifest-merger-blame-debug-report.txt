@@ -1,0 +1,10 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.readystatesoftware.android.sqliteassethelper"
+4    android:versionCode="2"
+5    android:versionName="2.0" >
+6
+7    <uses-sdk android:minSdkVersion="14" />
+7-->D:\Temp\Test_android\QUIZ\tTester\library\src\main\AndroidManifest.xml
+8
+9</manifest>
