@@ -4,7 +4,7 @@ ext {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion ("android-S")
+    compileSdkVersion 29
     buildToolsVersion "30.0.0"
 
     defaultConfig {
