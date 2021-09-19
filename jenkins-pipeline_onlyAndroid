@@ -43,7 +43,7 @@ stages {
 
        
             steps {
-                sh 'docker -v'
+                //sh 'docker -v'
                 sh 'echo $USER'
                 //sh 'if [[ "$(docker images -q myimage:android-build:6.0.1-30-29 2> /dev/null)" == "" ]]; then  echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile" -t android-build:6.0.1-30-29 .; fi;'
                 //sh 'echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile2" -m 10000000000 -t android-build:6.0.1-30-29 .'
@@ -51,7 +51,7 @@ stages {
         }
         stage ('compile project'){
             agent {
-                label 'docker_aws_node'
+                label 'Android_agent'
             }
             steps{
                //sh 'docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:5.4.1-28-27 gradle assembleDebug'
