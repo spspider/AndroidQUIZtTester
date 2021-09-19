@@ -54,6 +54,7 @@ stages {
                 label 'Android_agent'
             }
             steps{
+                sh 'ls'
                //sh 'docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:5.4.1-28-27 gradle assembleDebug'
                
                //sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle ./gradlew clean build -x lint -x test'
