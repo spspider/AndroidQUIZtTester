@@ -46,7 +46,7 @@ stages {
                 sh 'docker -v'
                 sh 'echo $USER'
                 //sh 'if [[ "$(docker images -q myimage:android-build:6.0.1-30-29 2> /dev/null)" == "" ]]; then  echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile" -t android-build:6.0.1-30-29 .; fi;'
-                sh 'echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile2" -t android-build:6.0.1-30-29 .'
+                sh 'echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile2" -m 10000000000 -t android-build:6.0.1-30-29 .'
             }
         }
         stage ('compile project'){
@@ -57,7 +57,7 @@ stages {
                //sh 'docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:5.4.1-28-27 gradle assembleDebug'
                
                //sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle ./gradlew clean build -x lint -x test'
-               sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
+               sh 'echo \'admin\' | sudo -S docker run --rm --memory="1g" -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
             }
         }
     }
