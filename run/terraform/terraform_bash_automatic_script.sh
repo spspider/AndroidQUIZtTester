@@ -10,7 +10,7 @@ IFS=$'\n' read -rd '' -a ip_arr <<<"$ip"
 IFS=$'\n' read -rd '' -a name_arr <<<"$name"
 
 
-folder_ansible='../ansible' filename="ansible/hosts.ini"; rm -rf $filename; mkdir $folder_ansible
+folder_ansible='../ansible' filename="$folder_ansible/hosts.ini"; rm -rf $filename; mkdir $folder_ansible
 echo '[server]' >> $filename
 for ((i = 0; i < (${#ip_arr[@]} ); i++)); do
 #for a in "${name_arr[@]}"; do 
