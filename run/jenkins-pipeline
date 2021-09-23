@@ -1,6 +1,12 @@
 pipeline {
 agent none
 stages {
+         stage('create server'){
+            agent {label 'master'}
+            steps {
+                sh 'terraform/terraform_bash_automatic_script.sh'
+            }
+        }
         stage('get pwd'){
             agent {label 'master'}
             steps {
