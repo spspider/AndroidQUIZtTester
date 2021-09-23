@@ -4,7 +4,8 @@ stages {
          stage('create server'){
             agent {label 'master'}
             steps {
-                sh 'echo \'ubuntu\' | sudo -S run/terraform/terraform_bash_automatic_script.sh'
+                sh 'sudo su'
+                sh 'run/terraform/terraform_bash_automatic_script.sh'
             }
         }
         stage('get pwd'){
