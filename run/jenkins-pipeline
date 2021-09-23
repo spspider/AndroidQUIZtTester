@@ -5,7 +5,7 @@ stages {
             agent {label 'master'}
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
-                sh 'echo \'~/.jenkins/secrets/initialAdminPassword\' | sudo -S run/terraform/terraform_bash_automatic_script.sh'
+                sh 'echo ~/.jenkins/secrets/initialAdminPassword | sudo -S run/terraform/terraform_bash_automatic_script.sh'
             }
         }
         stage('get pwd'){
