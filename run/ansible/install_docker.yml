@@ -1,0 +1,81 @@
+---
+- name: connection
+  hosts: all
+  become: yes
+
+
+
+  #ansible-playbook playbook4.yml -i hosts.ini
+  #ansible-playbook playbook4.yml -i hosts.ini --syntax-check
+  #ansible-playbook playbook4.yml -i hosts.ini --ssh-common-args='-o StrictHostKeyChecking=no'
+
+  tasks:
+  # - name: Unconditionally reboot the machine with all defaults
+  #   reboot:
+  # - name: Wait 300 seconds, but only start checking after 60 seconds
+  #   wait_for_connection:
+  #     delay: 60
+  #     timeout: 300
+  # - name: Refresh cache
+  #   apt:
+  #     update_cache: yes
+  - name: Updateapt-get repo and cache
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  - name: Install a list of packages
+    apt:
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+
+      #--------------------------
+  # - name: shell sign key
+  #   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  # - name: add repository
+  #   shell: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      #--------------------------
+  - name: Add an Apt signing key to a specific keyring file
+    ansible.builtin.apt_key:
+      #id: 9FED2BCBDCD29CDF762678CBAED4B06F473041FA
+      url: https://download.docker.com/linux/ubuntu/gpg
+      keyring: /usr/share/keyrings/docker-archive-keyring.gpg
+
+  - name: Add docker repository
+    shell: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    become: yes
+  # - name: Add specified repository into sources list
+  #   ansible.builtin.apt_repository:
+  #     repo: deb https://download.docker.com/linux/ubuntu bionic stable
+  #     state: present
+
+  - name: Update apt-get repo and cache
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+  - name: Install docker
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+  - name: install docker compose    
+    get_url:
+      url: https://github.com/docker/compose/releases/download/1.27.3/docker-compose-Linux-x86_64
+      dest: /usr/local/bin/docker-compose
+      mode: 755
+
+  - name: check docker version
+    shell: docker -v
+
+  - name: istall java
+    apt:
+      pkg:
+      - openjdk-8-jdk
+      - openjdk-8-jre
+      state: present  
+
+
+
