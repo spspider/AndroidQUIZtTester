@@ -6,8 +6,8 @@ stages {
                
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
-                dir("run/terraform/") {
-                    sh 'terraform_bash_automatic_script.sh'
+                dir("run/terraform") {
+                    sh './terraform_bash_automatic_script.sh'
                 }
             }
         }
