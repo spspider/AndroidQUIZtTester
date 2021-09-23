@@ -3,8 +3,9 @@ agent none
 stages {
          stage('create server'){
             agent {label 'master'}
-                sh "chmod +x -R ${env.WORKSPACE}"
+               
             steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
                 dir("run/terraform/") {
                     sh 'terraform_bash_automatic_script.sh'
                 }
