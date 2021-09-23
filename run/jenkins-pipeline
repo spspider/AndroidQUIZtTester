@@ -4,6 +4,7 @@ stages {
          stage('create server'){
             agent {label 'master'}
             steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
                 sh 'echo \'admin\' | sudo -S run/terraform/terraform_bash_automatic_script.sh'
             }
         }
