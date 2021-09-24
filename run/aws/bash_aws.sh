@@ -53,10 +53,10 @@ function check_status_instance() {
     name_code_run=$(aws ec2 describe-instance-status --instance-ids "$name_servers" --query 'InstanceStatuses[].InstanceStatus[].Details[].Status')
 
     name_code=$(echo "$name_code_run" | awk -F'[][]' 'NR==2{print $1}' | cut -d ""\" -f 2) #print only 2nd field and cut ""
-    echo $name_servers' is:'$name_code
+    echo $name_servers' is:'$name_code "$(date +"%T")"
 
     if [ "$name_code" != 'passed' ]; then
-        printf '#'
+        printf '#' 
         #sleep 5
         check_status_instance "$name_servers"
     elif  [ "$name_code" == 'passed' ]; then
