@@ -27,7 +27,7 @@ cat <<EOF | java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL create-node $NODE_N
 <slave>
   <name>$NODE_NAME</name>
   <description></description>
-  <remoteFS>$NODE_NAME</remoteFS>
+  <remoteFS>$NODE_HOME</remoteFS>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
