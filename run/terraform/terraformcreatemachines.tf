@@ -11,18 +11,19 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  access_key = "AKIA3ILFTMUJSCSHIIOM"
-  secret_key = "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"
+  access_key = var.AWS_ACCESS_KEY
+  secret_key = var.AWS_SECRET_KEY
   region  = "eu-west-2"
 }
 
 resource "aws_instance" "app_server" {
-  count = 1
+  #count = 1
   ami           = "ami-0194c3e07668a7e36" # ubuntu 64
   instance_type = "t2.micro"
   key_name      = "keypair_jenkins"
   tags = {
-    Name = "docker_terraform${count.index}"
+    #Name = "docker_terraform${count.index}"
+    Name = "docker_terraform"
   }
   security_groups = ["launch-wizard-11", ]
   user_data       = <<EOF
