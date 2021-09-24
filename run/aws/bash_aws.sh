@@ -57,12 +57,12 @@ function check_status_instance() {
 
     if [ "$name_code" != 'passed' ]; then
         printf '#' 
-        #sleep 5
+        sleep 5
         check_status_instance "$name_servers"
     elif  [ "$name_code" == 'passed' ]; then
         echo 'OK! sleep'
         get_URL "$name_servers"
-        sleep 60
+        sleep 30
 
     fi
     #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
