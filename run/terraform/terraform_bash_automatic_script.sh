@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf .terraform
-terraform init
-terraform apply -auto-approve
+#terraform init
+#terraform apply -auto-approve
 
 #ip="$(jq '[.resources[].instances[].attributes.public_dns] | sort[]' terraform.tfstate)"
 ip="$(jq '[.resources[].instances[].attributes.public_dns]  | .[]' terraform.tfstate)"
@@ -21,7 +21,7 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
     # name_servers=$(echo "${array[$i]}" | cut -d ""\" -f 2)
     ip_that=$(echo "${ip_arr[$i]}" | cut -d ""\" -f 2)
     name_that=$(echo "${name_arr[$i]}" | cut -d ""\" -f 2 | sed 's/ //g')
-    id_that=$(echo "${name_arr[$i]}" | cut -d ""\" -f 2)
+    id_that=$(echo "${id_arr[$i]}" | cut -d ""\" -f 2)
         #------------------------------------------------
         #--------------------rewrite docker aws-------
 
