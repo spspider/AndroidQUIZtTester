@@ -19,7 +19,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   #count = 1
   ami           = "ami-0194c3e07668a7e36" # ubuntu 64
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
   key_name      = "keypair_jenkins"
   tags = {
     #Name = "docker_terraform${count.index}"

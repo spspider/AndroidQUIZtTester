@@ -57,8 +57,7 @@ ansible-playbook $folder_ansible/install_docker.yml -i $folder_ansible/hosts.ini
 #relaunch agent
 for ((i = 0; i < (${#ip_arr[@]}); i++)); do
     id_that=$(echo "${id_arr[$i]}" | cut -d ""\" -f 2)
-    ip_that2=$(../aws/bash_aws.sh 'get_URL' "$id_that")
-    ../jenkins-cli/jenkinscli.sh 'connect' 'localhost' "$ip_that2" 'docker_aws_node'
+    ../jenkins-cli/jenkinscli.sh 'connect' 'localhost' 'host' 'docker_aws_node'
 done
 
 #проброс нового файла docker_aws_jenkins с обновлением его IP
