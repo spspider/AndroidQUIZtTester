@@ -37,6 +37,7 @@ function check_runnig_instance() {
     #echo $name_servers' is:'$name_code
     if [ "$name_code" = 'stopped' ]; then
         echo "stop"
+        start_server "$name_servers"
     fi
     if [ "$name_code" != 'running' ]; then
         printf '#'
