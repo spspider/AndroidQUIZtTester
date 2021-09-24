@@ -7,7 +7,7 @@ stages {
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
                 dir("run/terraform") {
-                    sh 'echo whoim'
+                    sh 'echo $USER'
                     sh './terraform_bash_automatic_script.sh'
                 }
             }
