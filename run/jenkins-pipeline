@@ -72,5 +72,20 @@ stages {
                sh 'echo \'admin\' | sudo -S docker run --rm --memory="1g" -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
             }
         }
+         stage ('sending builded apk back and destroy all servers'){
+            agent {
+                label 'master'
+            }
+            steps{
+               //sh 'docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:5.4.1-28-27 gradle assembleDebug'
+               
+               //sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle ./gradlew clean build -x lint -x test'
+               //sh 'echo \'admin\' | sudo -S docker run --rm --memory="1g" -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
+               dir("$PWD/run/terraform") {
+                    sh 'echo $USER'
+                    sh './terraform_bash_automatic_upload_and_destroy.sh'
+                }
+            }
+        }
     }
 }
