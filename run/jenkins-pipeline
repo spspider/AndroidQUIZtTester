@@ -5,7 +5,7 @@ stages {
             agent {label 'master'}
                
             steps {
-                def workspace = pwd()
+                
                 sh "chmod +x -R ${env.WORKSPACE}"
                 dir("run/terraform") {
                     sh 'echo $USER'
@@ -82,7 +82,8 @@ stages {
                
                //sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle ./gradlew clean build -x lint -x test'
                //sh 'echo \'admin\' | sudo -S docker run --rm --memory="1g" -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
-               dir("${workspace}/run/terraform") {
+               dir("${env.WORKSPACE}/run/terraform") {
+                    sh 'echo $PWD'
                     sh 'echo $USER'
                     sh './terraform_destroy.sh'
                           
