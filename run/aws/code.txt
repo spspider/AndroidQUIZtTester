@@ -1,0 +1,5 @@
+
+show instances:
+aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId" 
+
+start-instances --instance-ids 
