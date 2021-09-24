@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -rf .terraform
+#rm -rf .terraform
 terraform init
 terraform apply -auto-approve
 
@@ -27,9 +27,12 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
         
         ../aws/bash_aws.sh 'check' "$id_that"
         ../aws/bash_aws.sh 'status' "$id_that"
-        ../jenkins-cli/jenkinscli.sh 'docker' 'localhost' "$ip_that" 'docker_aws_node'
+        
+        ip_that2=$(../aws/bash_aws.sh 'get_URL' "$id_that")
+
+        ../jenkins-cli/jenkinscli.sh 'docker' 'localhost' "$ip_that2" 'docker_aws_node'
         #--------------------------------------------
-    echo "$name_that" 'ansible_host='"$ip_that" >>$filename
+    echo "$name_that" 'ansible_host='"$ip_that2" >>$filename
 done
 
 echo '' >>$filename
