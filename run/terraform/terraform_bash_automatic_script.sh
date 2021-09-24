@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf .terraform
-#terraform init
-#terraform apply -auto-approve
+terraform init
+terraform apply -auto-approve
 
 #ip="$(jq '[.resources[].instances[].attributes.public_dns] | sort[]' terraform.tfstate)"
 ip="$(jq '[.resources[].instances[].attributes.public_dns]  | .[]' terraform.tfstate)"
