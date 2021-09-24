@@ -11,6 +11,7 @@ stages {
                     sh './terraform_bash_automatic_script.sh'
                 }
             }
+
         }
         stage('get pwd'){
             agent {label 'master'}
