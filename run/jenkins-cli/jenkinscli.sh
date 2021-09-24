@@ -18,38 +18,36 @@ HOST="$3"
 LABELS=build
 USERID=${USER}
  
-function connect-node(){
-java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL connect-node $NODE_NAME  
+function connectnode(){
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" connect-node "$NODE_NAME"   
 }
+#../jenkins-cli/jenkinscli.sh 'connect' 'http://ec2-3-9-132-94.eu-west-2.compute.amazonaws.com:8080/' 'host' 'docker_aws_node'
 
 function change_slave_docker_aws(){
 echo "delete node $NODE_NAME"
-java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL delete-node $NODE_NAME
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" delete-node "$NODE_NAME"
 echo "create node $NODE_NAME"
 cat <<EOF | java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL create-node $NODE_NAME
 
 <slave>
-  <name>$NODE_NAME</name>
+  <name>docker_aws_node</name>
   <description></description>
-  <remoteFS>$NODE_HOME</remoteFS>
+  <remoteFS>/home/ubuntu/jenkins</remoteFS>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
-  <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.33.0">
-    <host>$HOST</host>
+  <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.33.0">
+    <host>$HOST</host>   
     <port>22</port>
     <credentialsId>androidnode</credentialsId>
     <launchTimeoutSeconds>60</launchTimeoutSeconds>
     <maxNumRetries>10</maxNumRetries>
     <retryWaitTime>15</retryWaitTime>
-    <sshHostKeyVerificationStrategy class="hudson.plugins.sshslaves.verifiers.ManuallyTrustedKeyVerificationStrategy">
-      <requireInitialManualTrust>true</requireInitialManualTrust>
-    </sshHostKeyVerificationStrategy>
+    <sshHostKeyVerificationStrategy class="hudson.plugins.sshslaves.verifiers.NonVerifyingKeyVerificationStrategy"/>
     <tcpNoDelay>true</tcpNoDelay>
   </launcher>
-  <label>$NODE_NAME node</label>
+  <label>docker_aws_node node</label>
   <nodeProperties/>
-
+</slave>
 EOF
 
 }
@@ -133,7 +131,7 @@ if [ "$1" = 'testCon' ];then
 elif [ "$1" = 'docker' ];then
   change_slave_docker_aws
 elif [ "$1" = 'connect' ];then
-  connect-node
+  connectnode
 else
 show_help
 fi
