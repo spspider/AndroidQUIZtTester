@@ -22,7 +22,7 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
         #------------------------------------------------
         #--------------------rewrite docker aws-------
 
-        ../jenkins-cli/jenkinscli.sh 'docker' 'http://localhost:8080' "$ip_that" 'docker_aws_node'
+        ../jenkins-cli/jenkinscli.sh 'docker' 'localhost' "$ip_that" 'docker_aws_node'
 
         #--------------------------------------------
     echo "$name_that" 'ansible_host='"$ip_that" >>$filename
