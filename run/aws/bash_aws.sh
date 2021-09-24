@@ -45,6 +45,26 @@ function check_runnig_instance() {
     fi
     #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
 }
+
+function check_status_instance() {
+    if [ -z "$name_servers" ];then
+    name_servers="$1"
+    fi
+    name_code_run=$(aws ec2 describe-instance-status --instance-ids "$name_servers" --query 'InstanceStatuses[].InstanceStatus[].Details[].Status')
+
+    name_code=$(echo "$name_code_run" | awk -F'[][]' 'NR==2{print $1}' | cut -d ""\" -f 2) #print only 2nd field and cut ""
+    echo $name_servers' is:'$name_code
+
+    if [ "$name_code" != 'passed' ]; then
+        printf '#'
+        #sleep 5
+        check_status_instance "$name_servers"
+    elif  [ "$name_code" != 'passed' ]; then
+        printf 'OK! sleep'
+        sleep 60
+    fi
+    #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
+}
 function check_until_server_become_online() {
     echo "please wait until server $1 become online"
     until $(curl --output /dev/null --silent --head --fail http://"$1"); do
@@ -174,6 +194,10 @@ elif [ "$1" = 'test' ]; then
 elif [ "$1" = 'check' ]; then
     name_servers="$2"
     check_runnig_instance "$name_servers"
+elif [ "$1" = 'status' ]; then
+    name_servers="$2"
+    check_status_instance "$name_servers"
+  
 else
     command_not_recognized
     #if [ "$1" = 'start ALL' ]; then

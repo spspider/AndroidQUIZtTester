@@ -24,7 +24,9 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
     id_that=$(echo "${id_arr[$i]}" | cut -d ""\" -f 2)
         #------------------------------------------------
         #--------------------rewrite docker aws-------
+        
         ../aws/bash_aws.sh 'check' "$id_that"
+        ../aws/bash_aws.sh 'status' "$id_that"
         ../jenkins-cli/jenkinscli.sh 'docker' 'localhost' "$ip_that" 'docker_aws_node'
         #--------------------------------------------
     echo "$name_that" 'ansible_host='"$ip_that" >>$filename
