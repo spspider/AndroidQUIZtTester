@@ -18,6 +18,10 @@ HOST="$3"
 LABELS=build
 USERID=${USER}
  
+function connect-node(){
+java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL connect-node $NODE_NAME  
+}
+
 function change_slave_docker_aws(){
 echo "delete node $NODE_NAME"
 java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL delete-node $NODE_NAME
@@ -128,6 +132,8 @@ if [ "$1" = 'testCon' ];then
   test_conn
 elif [ "$1" = 'docker' ];then
   change_slave_docker_aws
+elif [ "$1" = 'connect' ];then
+  connect-node
 else
 show_help
 fi
