@@ -7,9 +7,12 @@ IFS=$'\n' read -rd '' -a name_arr <<<"$name"
 
 
 for ((i = 0; i < (${#name_arr[@]}); i++)); do
+
+
     name_that=$(echo "${name_arr[$i]}" | cut -d ""\" -f 2 | sed 's/ //g')
     #----------------perfom secure copy
     echo "# tTesterUKDD from machine:$name_that" >> README.md
+    
     path="output/$name_that/apk"
     date_time=$(date +"%Y-%m-%d %T")
     git -C "$path" init 
