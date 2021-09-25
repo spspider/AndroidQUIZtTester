@@ -21,4 +21,4 @@ for ((i = 0; i < (${#id_arr[@]}); i++)); do
 
 done
 
-terraform destroy
+#terraform destroy
