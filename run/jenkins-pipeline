@@ -20,9 +20,17 @@ stages {
                 sh 'pwd'
             }
         }
+        stage ('download scripts from git to master') {
+            agent {
+                label 'master' 
+            }
+            steps {
+                git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                sh 'ls'
+            }
+        }
         
-        
-        stage ('download from git') {
+        stage ('download from git to slave docker_aws_node') {
             agent {
                 label 'docker_aws_node' 
             }
@@ -98,6 +106,7 @@ stages {
             }
             steps{
                dir("${env.WORKSPACE}/run") {
+                    sh "chmod +x -R ${env.WORKSPACE}"
                     sh 'echo $PWD'
                     sh 'echo $USER'
                     sh './publish_to_git'
