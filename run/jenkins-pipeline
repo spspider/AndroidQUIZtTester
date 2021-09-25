@@ -14,15 +14,15 @@ stages {
         //     }
 
         // }
-        // stage ('download scripts from git to master') {
-        //     agent {
-        //         label 'master' 
-        //     }
-        //     steps {
-        //         git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
-        //         sh 'ls'
-        //     }
-        // }
+        stage ('download scripts from git to master') {
+            agent {
+                label 'master' 
+            }
+            steps {
+                git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                sh 'ls'
+            }
+        }
         
         // stage ('download from git to slave docker_aws_node') {
         //     agent {
