@@ -21,7 +21,7 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
     git -C "$path" branch -M master  
     git -C "$path" remote rm origin
     git -C "$path" remote add origin git@github.com:spspider/tTesterUKDD.git  
-    git -C "$path" push -f -set-upstream origin master
+    git -C "$path" push -f --set-upstream origin master
 
 done
 
