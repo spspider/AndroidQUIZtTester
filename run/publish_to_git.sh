@@ -14,10 +14,10 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
     pwd
     ls
     date_time=$(date +"%Y-%m-%d %T")
-
-    echo "tTesterUKDD from machine:$name_that at $date_time" >> README.md
-
     path="output/$name_that/apk"
+    echo "tTesterUKDD from machine:$name_that at $date_time" >> "$path"/README.md
+
+    
 
     git -C "$path" init 
     git -C "$path" add .
