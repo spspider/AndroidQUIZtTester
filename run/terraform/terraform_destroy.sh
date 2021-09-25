@@ -39,6 +39,8 @@ if [ "$1" = 'destroy' ]; then
     terraform destroy -auto-approve
 elif [ "$1" = 'stop' ]; then
     dostop
+else
+    echo 'no arg'
 fi
 #сделать на выбор destroy stop
 #terraform destroy
