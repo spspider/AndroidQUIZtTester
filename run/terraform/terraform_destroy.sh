@@ -7,7 +7,7 @@ IFS=$'\n' read -rd '' -a id_arr <<<"$id"
 IFS=$'\n' read -rd '' -a name_arr <<<"$name"
 
 copy_from=~/jenkins/workspace/ProjectAndroidPipeline/app/build/outputs/apk
-copy_to=../output/"$name_that"
+
 
 id_arr_=()
 
@@ -18,7 +18,8 @@ for ((i = 0; i < (${#id_arr[@]}); i++)); do
     id_arr_[$i]+=$id_that
 
     #----------------perfom secure copy
-    mkdir -p ../output/"$name_that"
+    copy_to="/../output/$name_that"
+    mkdir -p "$copy_to"
     echo "copy from:ubuntu@$ip_that2:$copy_from to $copy_to"
     scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r -v -i ~/.ssh/keypair_jenkins.pem ubuntu@"$ip_that2":$copy_from "$copy_to"
 
