@@ -13,7 +13,7 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
     path="output/$name_that/apk"
     date_time=$(date +"%Y-%m-%d %T")
     git -C "$path" init 
-    git -C "$path" add 
+    git -C "$path" add .
     git -C "$path" commit -m "commit $name_that at $date_time" 
     git -C "$path" branch -M master  
     git -C "$path" remote add origin git@github.com:spspider/tTesterUKDD.git  
