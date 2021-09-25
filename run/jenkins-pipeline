@@ -75,10 +75,10 @@ stages {
         //        sh 'echo \'admin\' | sudo -S docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:6.0.1-30-29 gradle assembleDebug'
         //     }
         // }
-        //  stage ('sending builded apk back and destroy all servers'){
-        //     agent {
-        //         label 'master'
-        //     }
+         stage ('sending builded apk back and destroy all servers'){
+            agent {
+                label 'master'
+            }
             steps{
                //sh 'docker run --rm -v "$PWD":/home/gradle/ -w /home/gradle android-build:5.4.1-28-27 gradle assembleDebug'
                
@@ -88,7 +88,7 @@ stages {
                     sh "chmod +x -R ${env.WORKSPACE}"
                     sh 'echo $PWD'
                     sh 'echo $USER'
-                    sh './terraform_destroy.sh stop'
+                    sh './terraform_destroy.sh continue'
                     //sh './terraform_destroy.sh destroy'
                           
                 }
