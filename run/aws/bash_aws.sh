@@ -28,41 +28,46 @@ function get_URL {
 }
 
 function check_runnig_instance() {
-    if [ -z "$name_servers" ];then
-    name_servers="$1"
+    if [ -z "$name_servers" ]; then
+        name_servers="$1"
     fi
     name_code_run=$(aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Name')
 
     name_code=$(echo "$name_code_run" | awk -F'[][]' 'NR==2{print $1}' | cut -d ""\" -f 2) #print only 2nd field and cut ""
-    #echo $name_servers' is:'$name_code
+    echo $name_servers' is:'$name_code
     if [ "$name_code" = 'stopped' ]; then
         echo "stop"
         start_server "$name_servers"
     fi
     if [ "$name_code" != 'running' ]; then
-        printf '#'
+        sleep 5
         check_runnig_instance "$name_servers"
     fi
     #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
 }
 
 function check_status_instance() {
-    if [ -z "$name_servers" ];then
-    name_servers="$1"
+    if [ -z "$name_servers" ]; then
+        name_servers="$1"
     fi
     name_code_run=$(aws ec2 describe-instance-status --instance-ids "$name_servers" --query 'InstanceStatuses[].InstanceStatus[].Details[].Status')
 
     name_code=$(echo "$name_code_run" | awk -F'[][]' 'NR==2{print $1}' | cut -d ""\" -f 2) #print only 2nd field and cut ""
     echo $name_servers' is:'$name_code "$(date +"%T")"
-
+    itwassleep=0
     if [ "$name_code" != 'passed' ]; then
-        printf '#' 
+        printf '#'
         sleep 5
         check_status_instance "$name_servers"
-    elif  [ "$name_code" == 'passed' ]; then
-        echo 'OK! sleep'
+        itwassleep=1
+    elif [ "$name_code" == 'passed' ]; then
         get_URL "$name_servers"
-        sleep 30
+        if (($itwassleep == 1)); then
+            echo 'OK! sleep'
+            sleep 30    
+#            return
+        fi
+        
 
     fi
     #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
@@ -182,24 +187,27 @@ elif [ "$1" = 'jenkAndNode' ]; then
     start_jenkins_and_node
 elif [ "$1" = 'start' ]; then
     if [ -z "$2" ]; then
-    #no server, retrive server list
+        #no server, retrive server list
         all_server 3
     else
-    start_server "$2"
+        start_server "$2"
     fi
-elif [ "$1" = 'start1' ]; then    
-./bash_aws.sh start 'i-0ab25359d2c58d000'
+elif [ "$1" = 'start1' ]; then
+    ./bash_aws.sh start 'i-0ab25359d2c58d000'
 elif [ "$1" = 'get_URL' ]; then
     get_URL "$2"
 elif [ "$1" = 'test' ]; then
     check_runnig_instance 'i-0ab25359d2c58d000'
+elif [ "$1" = 'stop' ]; then
+    name_servers="$2"
+    stop_server "$name_servers"
 elif [ "$1" = 'check' ]; then
     name_servers="$2"
     check_runnig_instance "$name_servers"
 elif [ "$1" = 'status' ]; then
     name_servers="$2"
     check_status_instance "$name_servers"
-  
+
 else
     command_not_recognized
     #if [ "$1" = 'start ALL' ]; then

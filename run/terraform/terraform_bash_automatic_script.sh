@@ -14,7 +14,7 @@ IFS=$'\n' read -rd '' -a id_arr <<<"$id"
 
 folder_ansible='../ansible' filename="$folder_ansible/hosts.ini"
 rm -rf $filename
-mkdir $folder_ansible
+mkdir -p $folder_ansible
 echo '[server]' >>$filename
 for ((i = 0; i < (${#ip_arr[@]}); i++)); do
     #for a in "${name_arr[@]}"; do
@@ -31,6 +31,7 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
         ip_that2=$(../aws/bash_aws.sh 'get_URL' "$id_that")
 
         ../jenkins-cli/jenkinscli.sh 'docker' 'localhost' "$ip_that2" 'docker_aws_node'
+        #'docker_aws_node' - нужно создать уникальное имя, но в в pipeline используется lablel 'docker_aws_node'
         #--------------------------------------------
     echo "$name_that" 'ansible_host='"$ip_that2" >>$filename
 done
