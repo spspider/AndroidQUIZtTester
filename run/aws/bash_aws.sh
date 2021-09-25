@@ -61,8 +61,10 @@ function check_status_instance() {
         check_status_instance "$name_servers"
         itwassleep=1
     elif [ "$name_code" == 'passed' ]; then
+    
         get_URL "$name_servers"
-        if (($itwassleep == 1)); then
+
+        if [[ $itwassleep -eq 1 ]]; then
             echo 'OK! sleep'
             sleep 30    
 #            return
