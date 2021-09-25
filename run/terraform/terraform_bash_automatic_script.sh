@@ -26,7 +26,7 @@ for ((i = 0; i < (${#ip_arr[@]}); i++)); do
         #--------------------rewrite docker aws-------
         
         ../aws/bash_aws.sh 'check' "$id_that"
-        ../aws/bash_aws.sh 'status' "$id_that"
+        #../aws/bash_aws.sh 'status' "$id_that"
         
         ip_that2=$(../aws/bash_aws.sh 'get_URL' "$id_that")
 

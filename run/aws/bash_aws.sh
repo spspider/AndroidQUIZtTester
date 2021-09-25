@@ -3,6 +3,7 @@
 function start_server() {
     echo "$(aws ec2 start-instances --instance-ids "$1")"
     check_runnig_instance "$1"
+    check_status_instance "$1"
     echo "$(get_URL $1)"
 }
 
@@ -38,10 +39,13 @@ function check_runnig_instance() {
     if [ "$name_code" = 'stopped' ]; then
         echo "stop"
         start_server "$name_servers"
+
     fi
     if [ "$name_code" != 'running' ]; then
         sleep 5
         check_runnig_instance "$name_servers"
+        else
+        check_status_instance "$name_servers"
     fi
     #aws ec2 describe-instances --instance-ids "$name_servers" --query 'Reservations[].Instances[].State[].Code'
 }
