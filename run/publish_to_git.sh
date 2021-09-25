@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-name="$(jq '[.resources[].instances[].attributes.tags.Name]  | .[]' terraform.tfstate)"
+name="$(jq '[.resources[].instances[].attributes.tags.Name]  | .[]' terraform/terraform.tfstate)"
 
 IFS=$'\n' read -rd '' -a name_arr <<<"$name"
 
