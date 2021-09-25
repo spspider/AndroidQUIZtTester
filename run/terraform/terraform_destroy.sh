@@ -6,7 +6,7 @@ name="$(jq '[.resources[].instances[].attributes.tags.Name]  | .[]' terraform.tf
 IFS=$'\n' read -rd '' -a id_arr <<<"$id"
 IFS=$'\n' read -rd '' -a name_arr <<<"$name"
 
-copy_from=~/workspace/ProjectAndroidPipeline/app/build/outputs/apk
+copy_from=/home/ubuntu/jenkins/workspace/ProjectAndroidPipeline/app/build/outputs/apk
 
 
 id_arr_=()

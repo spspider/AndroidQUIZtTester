@@ -61,7 +61,7 @@ stages {
                 sh 'docker -v'
                 sh 'echo $USER'
                 //sh 'if [[ "$(docker images -q myimage:android-build:6.0.1-30-29 2> /dev/null)" == "" ]]; then  echo \'admin\' | sudo -S docker build -f "$PWD/docker/dockerfile" -t android-build:6.0.1-30-29 .; fi;'
-                sh 'echo \'admin\' | sudo -S docker build -f "$PWD/run/docker/dockerfile2" -m 10000000000 -t android-build:6.0.1-30-29 .'
+                sh 'echo \'admin\' | sudo -S docker build -f "$PWD/run/docker/dockerfile2" -t android-build:6.0.1-30-29 .'
             }
         }
         stage ('compile project'){
