@@ -11,8 +11,8 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
 
     name_that=$(echo "${name_arr[$i]}" | cut -d ""\" -f 2 | sed 's/ //g')
     #----------------perfom secure copy
-    echo pwd
-    echo ls
+    pwd
+    ls
     date_time=$(date +"%Y-%m-%d %T")
 
     echo "tTesterUKDD from machine:$name_that at $date_time" >> README.md
