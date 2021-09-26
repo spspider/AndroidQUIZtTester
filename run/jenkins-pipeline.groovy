@@ -24,17 +24,6 @@ stages {
 
             }
         }
-        stage ('get number of slaves') {
-            agent {
-                label 'master' 
-            }
-            steps {
-                  def slaves = new String[]
-                  println slaves
-                  sh 'ls'
-                                
-            }
-        }
         stage ('download from git to slave docker_aws_node') {
             agent {
                 label 'docker_aws_node' 

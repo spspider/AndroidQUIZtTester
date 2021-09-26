@@ -18,6 +18,17 @@ HOST="$3"
 LABELS=build
 USERID=${USER}
  
+function startbuild(){
+id_that='i-0ab25359d2c58d000'
+../aws/bash_aws.sh 'check' "$id_that"
+ip_jenkins=$(../aws/bash_aws.sh 'get_URL' "$id_that")
+local JENKINS_URL="http://$ip_jenkins:8080"
+local JAVA_file='jenkins-cli.jar'
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build 'ProjectAndroidPipeline' -v -f
+#java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build "$NODE_NAME"  
+
+}
+
 function connectnode(){
 java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" connect-node "$NODE_NAME"   
 }
@@ -132,6 +143,8 @@ elif [ "$1" = 'docker' ];then
   change_slave_docker_aws
 elif [ "$1" = 'connect' ];then
   connectnode
+elif [ "$1" = 'start' ];then
+  startbuild
 else
 show_help
 fi
