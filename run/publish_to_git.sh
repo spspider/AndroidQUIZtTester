@@ -15,7 +15,7 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
     ls
     date_time=$(date +"%Y-%m-%d %T")
     path="output/$name_that/apk"
-    echo "tTesterUKDD from machine:$name_that at $date_time" >> "$path"/README.md\
+    echo ":airplane: tTesterUKDD from machine:$name_that at $date_time" >> "$path"/README.md\
 
     
 
