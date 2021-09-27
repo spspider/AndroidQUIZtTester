@@ -19,7 +19,8 @@ stages {
                 label 'master' 
             }
             steps {
-                git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                //git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                git credentialsId: '3ca6c98c-4607-4129-ac2a-76c4fa18e826', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
                 sh 'ls'
 
             }
@@ -32,8 +33,9 @@ stages {
                //local
                //git credentialsId: '6f100a00-3000-45db-a46a-11b3216bf2e8', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
                //aws
-                git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
-                
+               
+                //git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                git credentialsId: '3ca6c98c-4607-4129-ac2a-76c4fa18e826', url: 'git@github.com:spspider/AndroidQUIZtTester.git' 
                 sh 'ls'
             }
         }

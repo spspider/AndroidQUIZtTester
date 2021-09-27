@@ -1,6 +1,7 @@
 #!/bin/bash
 #rm -rf .terraform
 terraform init
+terraform plan
 terraform apply -auto-approve
 
 #ip="$(jq '[.resources[].instances[].attributes.public_dns] | sort[]' terraform.tfstate)"

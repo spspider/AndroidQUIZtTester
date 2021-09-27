@@ -1,7 +1,7 @@
 #!/bin/bash
  
 #JENKINS_URL='http://ec2-35-178-176-67.eu-west-2.compute.amazonaws.com:8080'
-#java -jar jenkins-cli.jar -s http://ec2-18-130-192-137.eu-west-2.compute.amazonaws.com:8080/ -webSocket help
+#java -jar jenkins-cli.jar -s http://3.10.164.251:8080/ -webSocket help
 #java -jar ../jenkins-cli/jenkins-cli.jar -auth 'serhii:admin' -s http://ec2-18-130-56-20.eu-west-2.compute.amazonaws.com:8080 get-node docker_aws_node
 #get-node
 JENKINS_URL='http://'$2':8080'
@@ -24,7 +24,7 @@ id_that='i-0ab25359d2c58d000'
 ip_jenkins=$(../aws/bash_aws.sh 'get_URL' "$id_that")
 local JENKINS_URL="http://$ip_jenkins:8080"
 local JAVA_file='jenkins-cli.jar'
-java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build 'ProjectAndroidPipeline' -v -f
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build 'ProjectAndroidPipeline' -v -f -s
 #java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build "$NODE_NAME"  
 
 }
