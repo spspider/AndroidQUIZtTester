@@ -1,9 +1,14 @@
 #!/bin/bash
  
 #JENKINS_URL='http://ec2-35-178-176-67.eu-west-2.compute.amazonaws.com:8080'
-#java -jar jenkins-cli.jar -s http://3.10.164.251:8080/ -webSocket help
+#java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ -webSocket help
+java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ get-node docker_aws_node
 #java -jar ../jenkins-cli/jenkins-cli.jar -auth 'serhii:admin' -s http://ec2-18-130-56-20.eu-west-2.compute.amazonaws.com:8080 get-node docker_aws_node
 #get-node
+#get-job
+#java -jar jenkins-cli.jar -auth 'serhii:admin' -s http://3.8.96.141:8080 get-job ProjectAndroidPipeline
+
+
 JENKINS_URL='http://'$2':8080'
 "pwd"
 JAVA_file='../jenkins-cli/jenkins-cli.jar'
@@ -49,7 +54,7 @@ cat <<EOF | java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL create-node $NODE_N
   <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.33.0">
     <host>$HOST</host>   
     <port>22</port>
-    <credentialsId>androidnode</credentialsId>
+    <credentialsId>private_key_github</credentialsId>
     <launchTimeoutSeconds>60</launchTimeoutSeconds>
     <maxNumRetries>10</maxNumRetries>
     <retryWaitTime>15</retryWaitTime>
