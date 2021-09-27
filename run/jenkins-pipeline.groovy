@@ -118,7 +118,7 @@ stages {
                     sh "chmod +x -R ${env.WORKSPACE}"
                     sh 'echo $PWD'
                     sh 'echo $USER'
-                    sh './terraform_destroy.sh destroy' //destroy stop
+                    sh './terraform_destroy.sh stop' //destroy stop
                          
                 }
             }

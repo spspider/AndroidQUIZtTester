@@ -29,7 +29,7 @@ for ((i = 0; i < (${#name_arr[@]}); i++)); do
 
 done
 
-rm -rf "$path"
+#rm -rf "$path"
 
 
 #pwd "$(date +"%T")"
