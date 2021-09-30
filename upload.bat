@@ -1,4 +1,8 @@
 git add .
-date_time=$(date +"%Y-%m-%d %T")
-git commit -m "autmatic upload at $date_time"
+
+set mydate=%date:/=%
+set mytime=%time::=%
+set mytimestamp=%mydate: =_%_%mytime:.=_%
+
+git commit -m "autmatic upload at %mytimestamp%"
 git push
