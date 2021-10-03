@@ -6,7 +6,7 @@ written by me android Program for Air traffic Controllers in Ukraine
 please see:
 
 
-> [run/project.pub](run/project.pub "project pub")
+> [run/project.pdf](run/project.pdf "project pub")
 
 
 pipeline of project:
