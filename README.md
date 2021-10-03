@@ -9,6 +9,11 @@ please see:
 > [run/project.pub](run/project.pub "project pub")
 
 
+pipeline of project:
+
+> [run/jenkins-pipeline.groovy](run/jenkins-pipeline.groovy "jenkins-pipeline.groovy")
+
+
 
 build's available on:
 > [https://github.com/spspider/tTesterUKDD](https://github.com/spspider/tTesterUKDD "Build avialable")
