@@ -199,11 +199,11 @@ elif [ "$1" = 'start' ]; then
         start_server "$2"
     fi
 elif [ "$1" = 'start1' ]; then
-    ./bash_aws.sh start 'i-0ab25359d2c58d000'
+    ./bash_aws.sh start 'i-0ea9dace213d61f47'
 elif [ "$1" = 'get_URL' ]; then
     get_URL "$2"
 elif [ "$1" = 'test' ]; then
-    check_runnig_instance 'i-0ab25359d2c58d000'
+    check_runnig_instance 'i-0ea9dace213d61f47'
 elif [ "$1" = 'stop' ]; then
     name_servers="$2"
     stop_server "$name_servers"

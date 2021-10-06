@@ -24,12 +24,12 @@ LABELS=build
 USERID=${USER}
  
 function startbuild(){
-id_that='i-0ab25359d2c58d000'
+id_that='i-0ea9dace213d61f47'
 ../aws/bash_aws.sh 'check' "$id_that"
 ip_jenkins=$(../aws/bash_aws.sh 'get_URL' "$id_that")
 local JENKINS_URL="http://$ip_jenkins:8080"
 local JAVA_file='jenkins-cli.jar'
-java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build 'ProjectAndroidPipeline' -v -f -s
+#java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build 'ProjectAndroidPipeline' -v -f -s
 #java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" build "$NODE_NAME"  
 
 }
@@ -132,7 +132,7 @@ EOF
   
 }
 
-function change_node(){+-
+function change_node(){
 #java -jar /project/jenkins-cli/jenkins-cli.jar -auth serhii:admin -s 'http://ec2-18-130-50-96.eu-west-2.compute.amazonaws.com:8080' get-node docker_aws_node
 echo "delete node $NODE_NAME"
 java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL delete-node $NODE_NAME
