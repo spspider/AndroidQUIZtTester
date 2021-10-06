@@ -10,10 +10,10 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  #profile = "default"
   # access_key = var.AWS_ACCESS_KEY
   # secret_key = var.AWS_SECRET_KEY
-  region  = "eu-west-2"
+  region = "eu-west-2"
 }
 
 resource "aws_instance" "app_server" {
@@ -33,11 +33,11 @@ resource "aws_instance" "app_server" {
   sudo apt install mc
   sudo apt-get -qq install python -y
   EOF
-    timeouts {
+  timeouts {
     create = "60m"
     delete = "1h"
   }
- #jq '[.resources[].instances[].attributes.public_dns] | sort[]' terraform.tfstate | haform.tfstate | head
+  #jq '[.resources[].instances[].attributes.public_dns] | sort[]' terraform.tfstate | haform.tfstate | head
   # provisioner "remote-exec" {
   #   inline = ["sudo apt-get -qq install python -y"]
   # }

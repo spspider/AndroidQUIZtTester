@@ -6,7 +6,7 @@ java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ get
 #java -jar ../jenkins-cli/jenkins-cli.jar -auth 'serhii:admin' -s http://http://3.8.96.141/:8080 get-node docker_aws_node
 #get-node
 #get-job
-#java -jar jenkins-cli.jar -auth 'serhii:admin' -s http://3.8.96.141:8080 get-job ProjectAndroidPipeline
+#java -jar jenkins-cli.jar -auth 'serhii:admin' -s http://35.178.253.195:8080 get-job ProjectAndroidPipeline
 
 
 JENKINS_URL='http://'$2':8080'
@@ -67,7 +67,72 @@ cat <<EOF | java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL create-node $NODE_N
 EOF
 
 }
-function change_node(){
+
+
+function createpipeline () {
+  cat <<EOF | java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" create-job ProjectAndroidPipeline
+  <flow-definition plugin="workflow-job@2.41">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.9.2"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.9.2">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.34.1">
+          <spec></spec>
+        </com.cloudbees.jenkins.GitHubPushTrigger>
+        <hudson.triggers.SCMTrigger>
+          <spec>H H */3 * *</spec>
+          <ignorePostCommitHooks>false</ignorePostCommitHooks>
+        </hudson.triggers.SCMTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.94">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.8.2">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>git@github.com:spspider/AndroidQUIZtTester.git</url>
+          <credentialsId>private_key_github</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/master</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions/>
+    </scm>
+    <scriptPath>run/jenkins-pipeline.groovy</scriptPath>
+    <lightweight>true</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
+EOF
+  
+}
+
+function change_node(){+-
 #java -jar /project/jenkins-cli/jenkins-cli.jar -auth serhii:admin -s 'http://ec2-18-130-50-96.eu-west-2.compute.amazonaws.com:8080' get-node docker_aws_node
 echo "delete node $NODE_NAME"
 java -jar $JAVA_file -auth $AUTH -s $JENKINS_URL delete-node $NODE_NAME

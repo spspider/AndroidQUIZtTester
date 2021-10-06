@@ -1,7 +1,19 @@
 pipeline {
 agent none
 stages {
-         stage('create server via Terraform and install with Ansible'){
+
+        stage ('download scripts from git to master') {
+            agent {
+                label 'master' 
+            }
+            steps {
+                //git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                git credentialsId: 'private_key_github', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
+                sh 'ls'
+
+            }
+        }
+        stage('create server via Terraform and install with Ansible'){
             agent {label 'master'}
                
             steps {
@@ -13,17 +25,6 @@ stages {
                 }
             }
 
-        }
-        stage ('download scripts from git to master') {
-            agent {
-                label 'master' 
-            }
-            steps {
-                //git credentialsId: '5d0cd3c8-e66a-4c44-b2e6-83b731e625ac', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
-                git credentialsId: 'private_key_github', url: 'git@github.com:spspider/AndroidQUIZtTester.git'
-                sh 'ls'
-
-            }
         }
         stage ('download from git to slave docker_aws_node') {
             agent {
@@ -118,7 +119,7 @@ stages {
                     sh "chmod +x -R ${env.WORKSPACE}"
                     sh 'echo $PWD'
                     sh 'echo $USER'
-                    sh './terraform_destroy.sh stop' //destroy stop
+                    sh './terraform_destroy.sh destroy' //send_back destroy stop
                          
                 }
             }
