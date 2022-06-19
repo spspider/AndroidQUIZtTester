@@ -2,7 +2,7 @@
  
 #JENKINS_URL='http://ec2-35-178-176-67.eu-west-2.compute.amazonaws.com:8080'
 #java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ -webSocket help
-java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ get-node docker_aws_node
+#java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ get-node docker_aws_node
 #java -jar ../jenkins-cli/jenkins-cli.jar -auth 'serhii:admin' -s http://http://3.8.96.141/:8080 get-node docker_aws_node
 #get-node
 #get-job
@@ -11,7 +11,8 @@ java -jar  jenkins-cli.jar -auth 'serhii:admin' -s http://3.10.164.251:8080/ get
 
 JENKINS_URL='http://'$2':8080'
 "pwd"
-JAVA_file='../jenkins-cli/jenkins-cli.jar'
+#JAVA_file='../jenkins-cli/jenkins-cli.jar'
+JAVA_file='jenkins-cli.jar'
 NODE_NAME=$4
 NODE_HOME='/home/ubuntu/jenkins'
 AUTH='serhii:admin'
@@ -37,9 +38,10 @@ local JAVA_file='jenkins-cli.jar'
 function connectnode(){
 java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" connect-node "$NODE_NAME"   
 }
-#../jenkins-cli/jenkinscli.sh 'connect' 'http://ec2-3-9-132-94.eu-west-2.compute.amazonaws.com:8080/' 'host' 'docker_aws_node'
+#../jenkins-cli/jenkinscli.sh 'connect' 'http://192.168.1.125:8080/' 'host' 'docker_aws_node'
+#jenkinscli.sh 'pipeline' 'http://192.168.1.125:8080/'
 
-function change_slave_docker_aws(){
+function change_slave_docker_aws2(){
 echo "delete node $NODE_NAME"
 java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" delete-node "$NODE_NAME"
 echo "create node $NODE_NAME"
@@ -68,6 +70,40 @@ EOF
 
 }
 
+#java -jar jenkins-cli.jar -auth serhii:admin -s http://35.179.17.90:8080 get-job ProjectAndroidPipeline > ProjectAndroidPipeline.xml
+#java -jar jenkins-cli.jar -auth serhii:admin -s http://35.179.17.90:8080 get-node docker_aws_node > docker_aws_node.xml
+
+function change_slave_docker_aws(){
+
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL"  get-node "$NODE_NAME" > "$NODE_NAME".xml
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" delete-node "$NODE_NAME"
+
+xmlstarlet ed \
+-u "/slave/launcher/host" \
+-v "$HOST" \
+"$NODE_NAME".xml > "$NODE_NAME"_upd.xml
+
+java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL"  create-node "$NODE_NAME" < "$NODE_NAME"_upd.xml
+
+}
+
+
+function xmlStarletValue(){
+
+java -jar jenkins-cli.jar -auth serhii:admin -s http://35.179.17.90:8080 get-node docker_aws_node > docker_aws_node.xml
+
+xmlstarlet ed \
+-u "/slave/launcher/host" \
+-v $HOST \
+docker_aws_node.xml > docker_aws_node_upd.xml
+
+}
+
+
+
+
+
+#java -jar jenkins-cli.jar -s http://server create-job newmyjob < myjob.xml
 
 function createpipeline () {
   cat <<EOF | java -jar $JAVA_file -auth $AUTH -s "$JENKINS_URL" create-job ProjectAndroidPipeline
@@ -215,6 +251,8 @@ elif [ "$1" = 'connect' ];then
   connectnode
 elif [ "$1" = 'start' ];then
   startbuild
+  elif [ "$1" = 'pipeline' ];then
+  createpipeline
 else
 show_help
 fi
